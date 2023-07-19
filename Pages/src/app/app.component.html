@@ -1,0 +1,45 @@
+<nav>
+  <ul class="pagination">
+    <!-- appClass: custom ngClass implementation -->
+    <li class="page-item" [appClass]="{ disabled: currentPage == 0 }">
+      <a class="page-link" (click)="currentPage = currentPage - 1" href="#"
+        >Prev</a
+      >
+    </li>
+    <!-- <ng-container *ngFor="let item of images; let i = index"> -->
+    <ng-container *appTimes="images.length; let i = index">
+      <li
+        class="page-item"
+        [appClass]="{ active: i == currentPage }"
+        *ngIf="checkIfPageIsVisible(i)"
+      >
+        <a class="page-link" (click)="currentPage = i" href="#">{{ i + 1 }}</a>
+      </li>
+    </ng-container>
+    <li
+      class="page-item"
+      [appClass]="{ disabled: currentPage == images.length - 1 }"
+    >
+      <a class="page-link" (click)="currentPage = currentPage + 1" href="#"
+        >Next</a
+      >
+    </li>
+  </ul>
+</nav>
+
+<div>
+  <h4>{{ images[currentPage].title }}</h4>
+  <img [src]="images[currentPage].url" />
+</div>
+
+<!-- Demo Purposes Only -->
+<div [ngSwitch]="currentPage % 2">
+  <div *ngSwitchCase="0">Current Page is Even</div>
+  <div *ngSwitchCase="1">Current Page is Odd</div>
+  <div *ngSwitchCase="0">Current Page is Even</div>
+  <div *ngSwitchDefault>Unknown</div>
+</div>
+
+<div *appTimes="5">
+  <label>Hello</label>
+</div>
