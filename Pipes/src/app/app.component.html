@@ -1,0 +1,64 @@
+<div class="container">
+  <h3>Payment Form</h3>
+  <div class="row">
+    <div class="form-group col">
+      <label>Payee Name</label>
+      <input class="form-control" (input)="onNameChange($event)">
+    </div>
+    <div class="col">
+      <label><b>Name</b></label>
+      <div>
+        {{name | titlecase}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <label>Payment Date</label>
+      <input type="date" class="form-control" (input)="onDateChange($event)">
+    </div>
+    <div class="col">
+      <label><b>Payment Date</b></label>
+      <div>
+        {{ date | date: 'longDate' }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <label>Payment Amount</label>
+      <input type="number" class="form-control" (input)="onAmountChange($event)">
+    </div>
+    <div class="col">
+      <label><b>Payment Amount</b></label>
+      <div>
+        {{ amount | currency : 'USD'}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <label>Height</label>
+      <input type="number" class="form-control" (input)="onHeightChange($event)">
+    </div>
+    <div class="col">
+      <label><b>Height</b></label>
+      <div>
+        {{ height | number : '1.0-0' }}
+      </div>
+    </div>
+  </div>
+  <!-- {{car | json}} -->
+  <div class="row">
+    <div class="form-group col">
+      <label>Distance in miles</label>
+      <input type="number" class="form-control" (input)="onDistanceChange($event)">
+    </div>
+    <div class="col">
+      <label><b>Distance in kilometers</b></label>
+      <div *ngIf="(distanceInMiles | convertMiToKm) > 10">
+        {{ distanceInMiles | convertMiToKm | number : '1.0-3' }}
+      </div>
+    </div>
+  </div>
+</div>
