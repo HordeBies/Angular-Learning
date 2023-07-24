@@ -5,8 +5,13 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
+  // Lazy Loading
+  { path: 'elements', loadChildren: () => import('./elements/elements.module').then(m => m.ElementsModule) },
+  { path: 'collections', loadChildren: () => import('./collections/collections.module').then(m => m.CollectionsModule)},
+  // Eager Loading
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent }
+
 ];
 
 @NgModule({
