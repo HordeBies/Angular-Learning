@@ -8,9 +8,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of pages">
-            <td>{{item.title}}</td>
+            <td><a target="_blank" [href]="'https://en.wikipedia.org?curid='+item.pageid">{{item.title}}</a></td>
             <td>{{item.wordcount}}</td>
-            <td>{{item.snippet}}</td>
+            <td [innerHtml]="item.snippet"></td>
         </tr>
     </tbody>
 </table>
